@@ -29,7 +29,7 @@ class LaravelDraftsServiceProvider extends PackageServiceProvider
             string $publishedAt = null,
             string $isPublished = null,
             string $isCurrent = null,
-            string $publisherMorphName = null,
+            string $publisherMorphName = null
         ) {
             /** @var Blueprint $this */
             $uuid ??= config('drafts.column_names.uuid', 'uuid');
@@ -52,7 +52,7 @@ class LaravelDraftsServiceProvider extends PackageServiceProvider
             string $publishedAt = null,
             string $isPublished = null,
             string $isCurrent = null,
-            string $publisherMorphName = null,
+            string $publisherMorphName = null
         ) {
             /** @var Blueprint $this */
             $publisherMorphName ??= config('drafts.column_names.publisher_morph_name', 'publisher_morph_name');

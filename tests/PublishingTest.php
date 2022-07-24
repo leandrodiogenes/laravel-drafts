@@ -1,7 +1,6 @@
 <?php
 
 use Oddvalue\LaravelDrafts\Tests\Post;
-use function Spatie\PestPluginTestTime\testTime;
 
 it('can draft model', function () {
     Post::createDraft(['title' => 'Hello World']);

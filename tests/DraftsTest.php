@@ -1,7 +1,6 @@
 <?php
 
 use Oddvalue\LaravelDrafts\Tests\Post;
-use function Spatie\PestPluginTestTime\testTime;
 
 it('creates drafts', function () {
     config(['drafts.revisions.keep' => 2]);

@@ -39,7 +39,7 @@ trait Publishes
      *
      * @return static
      */
-    public function publish(): static
+    public function publish(): self
     {
         if ($this->fireModelEvent('publishing') === false) {
             return $this;
@@ -71,7 +71,7 @@ trait Publishes
      * @param string|\Closure $callback
      * @return void
      */
-    public static function publishing(string|\Closure $callback): void
+    public static function publishing($callback): void
     {
         static::registerModelEvent('publishing', $callback);
     }
@@ -82,7 +82,7 @@ trait Publishes
      * @param string|\Closure $callback
      * @return void
      */
-    public static function published(string|\Closure $callback): void
+    public static function published($callback): void
     {
         static::registerModelEvent('published', $callback);
     }

@@ -28,11 +28,11 @@ it('adds the required draft columns to the table', function () {
 it('allows column names to be overridden when migrating', function () {
     $this->app['db']->connection()->getSchemaBuilder()->table('foo', function (Blueprint $table) {
         $table->drafts(
-            uuid: 'uuid_override',
-            publishedAt: 'published_at_override',
-            isPublished: 'is_published_override',
-            isCurrent: 'is_current_override',
-            publisherMorphName: 'publisher_override'
+            'uuid_override',
+             'published_at_override',
+             'is_published_override',
+             'is_current_override',
+             'publisher_override'
         );
     });
 
@@ -77,11 +77,11 @@ it('drops draft columns', function () {
 it('drops custom named draft columns', function () {
     $this->app['db']->connection()->getSchemaBuilder()->table('foo', function (Blueprint $table) {
         $table->drafts(
-            uuid: 'uuid_override',
-            publishedAt: 'published_at_override',
-            isPublished: 'is_published_override',
-            isCurrent: 'is_current_override',
-            publisherMorphName: 'publisher_override'
+             'uuid_override',
+             'published_at_override',
+             'is_published_override',
+             'is_current_override',
+             'publisher_override'
         );
     });
 
@@ -96,11 +96,11 @@ it('drops custom named draft columns', function () {
 
     $this->app['db']->connection()->getSchemaBuilder()->table('foo', function (Blueprint $table) {
         $table->dropDrafts(
-            uuid: 'uuid_override',
-            publishedAt: 'published_at_override',
-            isPublished: 'is_published_override',
-            isCurrent: 'is_current_override',
-            publisherMorphName: 'publisher_override'
+             'uuid_override',
+             'published_at_override',
+             'is_published_override',
+             'is_current_override',
+             'publisher_override'
         );
     });
 

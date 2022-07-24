@@ -2,7 +2,7 @@
 
 namespace Oddvalue\LaravelDrafts\Concerns;
 
-use Illuminate\Contracts\Database\Query\Builder;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -143,7 +143,8 @@ trait HasDrafts
             return;
         }
 
-        $oldAttributes = $published?->getAttributes() ?? [];
+//        $oldAttributes = $published?->getAttributes() ?? [];
+        $oldAttributes = $published ? $published->getAttributes() ?? [] : [];
         $newAttributes = $this->getAttributes();
         Arr::forget($oldAttributes, $this->getKeyName());
         Arr::forget($newAttributes, $this->getKeyName());
@@ -213,7 +214,7 @@ trait HasDrafts
         return $saved;
     }
 
-    public function asDraft(): static
+    public function asDraft(): self
     {
         $this->shouldSaveAsDraft = true;
 
@@ -239,12 +240,21 @@ trait HasDrafts
         return parent::save($options);
     }
 
-    public static function savingAsDraft(string|\Closure $callback): void
+
+    /**
+     * @param string|\Closure $callback
+     * @return void
+     */
+    public static function savingAsDraft($callback): void
     {
         static::registerModelEvent('savingAsDraft', $callback);
     }
 
-    public static function savedAsDraft(string|\Closure $callback): void
+    /**
+     * @param string|\Closure $callback
+     * @return void
+     */
+    public static function savedAsDraft($callback): void
     {
         static::registerModelEvent('drafted', $callback);
     }
@@ -267,7 +277,7 @@ trait HasDrafts
         });
     }
 
-    public function setPublisher(): static
+    public function setPublisher(): self
     {
         if ($this->{$this->getPublisherColumns()['id']} === null && LaravelDrafts::getCurrentUser()) {
             $this->publisher()->associate(LaravelDrafts::getCurrentUser());
@@ -300,7 +310,6 @@ trait HasDrafts
      *
      * @return array
      */
-    #[ArrayShape(['id' => "string", 'type' => "string"])]
     public function getPublisherColumns(): array
     {
         return [
